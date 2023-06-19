@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    .container{
+     
+      height:auto;
+      width:auto;
+      margin:40px auto 0 auto;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: start;
+      font-size: 12px;
+    }
+    .container-div-1{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+
+    }
+    .container-div-1 p img{
+      width: 100px;
+      height: 100px;
+ 
+      border: 2px solid #eee;
+      border-radius: 50%;
+    }
+    img{
+      background-image: url("/img/makarenco.jpg");
+    }
+    .container-div-1 p{
+      font-weight: bold;
+      text-align: center;
+    }
+    strong{
+      font-size: 14px;
+      text-decoration: underline;
+    }
+
+    .container-div-2{
+      margin-top: 12px;
+      display: flex;
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .container-div-2 strong{
+      font-size: 12px;
+      font-weight: normal;
+      text-decoration: none;
+    }
+    .container-div-2 table{
+      width: 100%;
+     
+
+    }
+    table{
+      border-left:1px solid #000;    }
+        table:last-child{
+        border-bottom: none;
+      }
+      thead{
+        background-color: #ccc;
+      }
+
+    
+  tr{
+    border: transparent 1px solid;
+   margin: 0;
+ display: flex;
+ width: 100%;
+  
+  
+  }
+  tbody{
+   
+  }
+  td{
+ text-align: center;
+ flex:1;
+ border-bottom: 1px solid #000;
+ padding: 4px;
+ border-right: 1px solid #000;
+ font-size: 12px;
+
+  }
+  th{
+   
+    border:none;
+    border-bottom: 1px solid #000;
+    margin: 0;
+    border-right: 1px solid #000;
+    flex: 1;
+    font-size: 12px;
+    padding: 4px;
+
+  }
+  .ident{
+    margin: 0 auto 0 auto;
+  }
+  </style>
+
+
+  <% data.forEach(function(datas,index){ %>
+    <%datas.forEach(function(aluno,posicao){ %>
+    <div class="container"> 
+      <div class="container-div-1">
+        <p>  <img src="img/makarenco.jpg" alt="logo IPIL"></img></p>
+        <p >INSTITUTO POLITÉCNICO INDUSTRIAL DE LUANDA <br/>
+          SUBDIRECÇÃO PEDAGÓGICA <br/>
+          CURSO:<%= curso %></p>
+          <p id="ident">BOLETIM DE NOTAS DO ALUNO - ANO LECTIVO <%= anoLectivo %></p>      
+    </div>
+    
+    <div class="container-div-2">
+      <strong> <%- aluno.nome %>; TURMA:<%=turma %>; Nº: <%=aluno.numero %> -<%= aluno.processo %> </strong>
+      <table border="" >
+        <thead>
+          <tr>
+            
+            <th colspan="30"> <%= trimestre %> TRIMESTRE</th>
+          </tr>
+        <tr>
+          <th colspan="1">Nº </th>
+          <th colspan="3">Disciplina Curriculares </th>
+          <th colspan="1">Faltas </th>
+          <th colspan="1">MAC </th>
+          <th colspan="1">PP </th>
+          <th colspan="1">PT</th>
+          <th colspan="2">MÉD </th>
+        </tr>
+      
+        </thead>
+        <tbody>
+          <% _disciplinas.forEach(function(disciplina,indice){ %>
+          <tr  class="linha" >
+            <td colspan="1">
+              <%=indice+1 %>
+            </td>
+       
+            <td colspan="3">
+              <%=disciplina%>
+            </td>   
+            <% aluno.notas.forEach(function(nota,ind){ %>
+            <td colspan="1">
+                
+              <td colspan="1">
+              </td>
+                <%=nota.MAC %>
+              </td>
+              <td colspan="1">
+                <%=nota.NPP %>
+              </td>
+              <td colspan="1">
+                <%=nota.NPT %>
+              </td>
+              <td colspan="1">
+                <%=nota.MT1 %>
+              </td>
+              <% }); %>
+           
+              </tr>
+              <% }); %>
+                        
+        </tbody>
+      </table>
+    </div>
+    <% }); %>
+  <% }); %>
+
+ 
+  <script>
+   
+    const titulo=document.querySelector("#titulo")
+    console.log("deu certo:"+titulo)
+  </script>
+</body>
+
+</html>
